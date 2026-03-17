@@ -5,7 +5,7 @@ int main(){
 	int i,j,k;
 	int b[n+5];
 	int num,den;
-	double q[2*n+1]={0};
+	double t[2*n+1]={0};
 	double P[2*n]={0};
 	int rank;
 	int rounds_max[n+1][n+1];//單場最大再來一場數 
@@ -24,8 +24,8 @@ int main(){
 	}
 	while(1){
 		max=1;//刷新條件 
-		for(i=1;i<=2*n;i++){//重製q 
-			q[i]=0;
+		for(i=1;i<=2*n;i++){//重製t 
+			t[i]=0;
 		}
 		
 		for(i=1;i<=n;i++){
@@ -34,16 +34,16 @@ int main(){
 			P[i]=(double)num/den;
 		}
 		
-		for(k=2;k<=2*n;k++){//算q 
+		for(k=2;k<=2*n;k++){//算t 
 			if(k-2>0){
 				for(i=1;i<=k-2;i++){
 					for(j=1;j<=i;j++){
-						q[k]+=P[j]*P[i+1-j];
+						t[k]+=P[j]*P[i+1-j];
 					}
 				}
 			}
 			for(i=1;i<=k-1;i++){
-				q[k]+=P[i]*P[k-i]/2;
+				t[k]+=P[i]*P[k-i]/2;
 			}
 		}
 		while(max!=0){
@@ -70,7 +70,7 @@ int main(){
 										E_den=0;
 										E=0;
 										for(j=1;j<=n;j++){
-											E_num+=(double)(1+rounds_again[rank][j][b[j]])*P[j]*q[rank+j];
+											E_num+=(double)(1+rounds_again[rank][j][b[j]])*P[j]*t[rank+j];
 											E_den+=(double)(1+rounds_again[rank][j][b[j]])*P[j];
 											E=(double)E_num/E_den;
 										}
