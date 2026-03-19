@@ -29,7 +29,7 @@ int main(){
 		}
 		
 		for(i=1;i<=n;i++){
-			printf("等級%d出現機率(分子、分母)\n",i);
+			printf("等級%d出現機率(輸入分子、分母，且機率不為0)\n",i);
 			scanf(" %d %d",&num,&den);
 			P[i]=(double)num/den;
 		}
